@@ -1,15 +1,18 @@
 Package: BMGMR
 Type: Package
-Title: Objective Bayesian meta-analysis based on
-generalized multivariate random effects models (BMGMR)
+Title: Objective Bayesian meta-analysis based on generalized multivariate random
+    effects models
 Version: 0.1.0
 Author: Olha Bodnar, Taras Bodnar, Erik Thorsén
 Maintainer: Erik Thorsén <erik.thorsen@math.su.se>
-Description: Package which implements the 
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Description: Package which implements the four different methods from the paper 
+    "Objective Bayesian meta-analysis based on generalized multivariate random 
+    effects model".
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Imports:
+    assertthat
 Suggests:
     mvmeta,
     gplots,

@@ -12,9 +12,17 @@ duplication_matrix <- function(x){
   outer(c(mat), index , function( x , y ) ifelse(x==y, 1, 0 ) )
 }
 
-#########################################################################################################
-### algorithmA, Jeffreys normal, X:p\times n data matrix, U: pn \times pn matrix with uncertainties #####
-#########################################################################################################
+#' Metropolis hasting algorithm A
+#'
+#' This function implements the algorithm A using the normal likelihood and
+#' jeffreys prior. The number of observations is n and the number of variables
+#' is p.
+#'
+#' @param X A p \times n matrix which contains the observations
+#' @param U A p n \times p n block matrix which contains uncertainties.
+#' @param Np the number of simulations to perform.
+#'
+#' @return list with samples from the two marginal distributions
 sample_post_nor_jef_marg_mu<-function(X,U,Np){
   p<-nrow(X)  # model dimension
   n<-ncol(X)  # sample size
