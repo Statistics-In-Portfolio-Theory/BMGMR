@@ -17,3 +17,4 @@ Suggests:
     mvmeta,
     gplots,
     testthat
+RoxygenNote: 7.1.2

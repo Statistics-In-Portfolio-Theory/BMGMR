@@ -1,2 +1,6 @@
 exportPattern("^[[:alpha:]]+")
 importFrom("stats", "quantile", "rchisq", "rnorm", "runif", "var")
+S3method(summary, "BMGMR")
+S3method(plot, "BMGMR")
+importFrom("graphics", "abline", "title")
+importFrom("grDevices", "topo.colors")

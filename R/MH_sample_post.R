@@ -4,6 +4,8 @@
 #' This function creates a duplication matrix of size x
 #'
 #' @param x the dimension of the matrix
+#'
+#' @return a matrix of size x^2
 duplication_matrix <- function(x){
   mat <- diag(x)
   index <- seq(x*(x+1)/2)
@@ -18,8 +20,8 @@ duplication_matrix <- function(x){
 #' jeffreys prior. The number of observations is n and the number of variables
 #' is p.
 #'
-#' @param X A p \times n matrix which contains the observations
-#' @param U A p n \times p n block matrix which contains uncertainties.
+#' @param X A p x n matrix which contains the observations
+#' @param U A p n x p n block matrix which contains uncertainties.
 #' @param Np the number of simulations to perform.
 #'
 #' @return list with samples from the two marginal distributions
@@ -112,9 +114,12 @@ sample_post_nor_jef_marg_mu<-function(X,U,Np){
   output<-list(mu_m,Psi_m)
 }
 
-#########################################################################################################
-### algorithmB, Jeffreys normal, X:p\times n data matrix, U: pn \times pn matrix with uncertainties #####
-#########################################################################################################
+#' Metropolis Hasting Algorithm B, normal-distribution
+#'
+#' A MH algorithm that samples using a likelihood from the normal distribution
+#' and the reference prior.
+#'
+#' @inherit sample_post_nor_jef_marg_mu
 sample_post_nor_jef_marg_Psi<-function(X,U,Np){
   p<-nrow(X)  # model dimension
   n<-ncol(X)  # sample size
@@ -206,9 +211,14 @@ sample_post_nor_jef_marg_Psi<-function(X,U,Np){
   output<-list(mu_m,Psi_m)
 }
 
-#########################################################################################################
-### algorithmA, Jeffreys t, X:p\times n data matrix, U: pn \times pn matrix with uncertainties ##########
-#########################################################################################################
+#' Metropolis Hasting Algorithm A, t-distribution
+#'
+#' A MH algorithm that samples using a likelihood from the t distribution and
+#' the jeffreys prior.
+#'
+#' @inherit sample_post_nor_jef_marg_mu
+#' @param d the degrees of freedom for the t-distribution
+#'
 sample_post_t_jef_marg_mu<-function(X,U,d,Np){
   p<-nrow(X)  # model dimension
   n<-ncol(X)  # sample size
@@ -300,9 +310,12 @@ sample_post_t_jef_marg_mu<-function(X,U,d,Np){
   output<-list(mu_m,Psi_m)
 }
 
-#########################################################################################################
-### algorithmB, Jeffreys t, X:p\times n data matrix, U: pn \times pn matrix with uncertainties ##########
-#########################################################################################################
+#' Metropolis Hasting Algorithm B, t-distribution
+#'
+#' A MH algorithm that samples using a likelihood from the t distribution
+#' and the jeffreys prior.
+#'
+#' @inherit sample_post_t_jef_marg_mu
 sample_post_t_jef_marg_Psi<-function(X,U,d,Np){
   p<-nrow(X)  # model dimension
   n<-ncol(X)  # sample size
@@ -391,9 +404,14 @@ sample_post_t_jef_marg_Psi<-function(X,U,d,Np){
   }
   output<-list(mu_m,Psi_m)
 }
-#########################################################################################################
-### algorithmA, reference normal, X:p\times n data matrix, U: pn \times pn matrix with uncertainties ####
-#########################################################################################################
+
+
+#' Metropolis Hasting Algorithm A, normal-distribution
+#'
+#' A MH algorithm that samples using a likelihood from the normal distribution
+#' and the reference prior.
+#'
+#' @inherit sample_post_nor_jef_marg_mu
 sample_post_nor_ref_marg_mu<-function(X,U,Np){
   p<-nrow(X)  # model dimension
   n<-ncol(X)  # sample size
@@ -481,9 +499,12 @@ sample_post_nor_ref_marg_mu<-function(X,U,Np){
 }
 
 
-#########################################################################################################
-### algorithmB, reference normal, X:p\times n data matrix, U: pn \times pn matrix with uncertainties ####
-#########################################################################################################
+#' Metropolis Hasting Algorithm B, normal-reference
+#'
+#' A MH algorithm that samples using a likelihood from the normal distribution
+#' and the reference prior.
+#'
+#' @inherit sample_post_nor_jef_marg_mu
 sample_post_nor_ref_marg_Psi<-function(X,U,Np){
   p<-nrow(X)  # model dimension
   n<-ncol(X)  # sample size
@@ -573,9 +594,12 @@ sample_post_nor_ref_marg_Psi<-function(X,U,Np){
   output<-list(mu_m,Psi_m)
 }
 
-#########################################################################################################
-### algorithmA, reference t, X:p\times n data matrix, U: pn \times pn matrix with uncertainties #########
-#########################################################################################################
+#' Metropolis Hasting Algorithm A, t-reference
+#'
+#' A MH algorithm that samples using a likelihood from the t distribution
+#' and the reference prior.
+#'
+#' @inherit sample_post_t_jef_marg_mu
 sample_post_t_ref_marg_mu<-function(X,U,d,Np){
   p<-nrow(X)  # model dimension
   n<-ncol(X)  # sample size
@@ -667,9 +691,12 @@ sample_post_t_ref_marg_mu<-function(X,U,d,Np){
   output<-list(mu_m,Psi_m)
 }
 
-#########################################################################################################
-### algorithmB, reference t, X:p\times n data matrix, U: pn \times pn matrix with uncertainties #########
-#########################################################################################################
+#' Metropolis Hasting Algorithm B, t-reference
+#'
+#' A MH algorithm that samples using a likelihood from the t distribution
+#' and the reference prior.
+#'
+#' @inherit sample_post_t_jef_marg_mu
 sample_post_t_ref_marg_Psi<-function(X,U,d,Np){
   p<-nrow(X)  # model dimension
   n<-ncol(X)  # sample size
@@ -758,9 +785,3 @@ sample_post_t_ref_marg_Psi<-function(X,U,d,Np){
   }
   output<-list(mu_m,Psi_m)
 }
-
-
-
-
-
-
